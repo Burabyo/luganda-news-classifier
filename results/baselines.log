@@ -1,0 +1,52 @@
+majority               most_frequent          dev F1=0.1250  test F1=0.1238 acc=0.4484
+tfidf_word_nb          alpha=0.01             dev F1=0.7899  test F1=0.8147 acc=0.8520
+tfidf_word_lr          C=1,ngram=(1, 1)       dev F1=0.8218  test F1=0.8520 acc=0.8700
+tfidf_char_lr          C=10,ngram=(2, 4)      dev F1=0.8902  test F1=0.8563 acc=0.8744
+tfidf_word+char_svm    C=0.5                  dev F1=0.8517  test F1=0.8853 acc=0.9013
+{
+  "majority": {
+    "config": "most_frequent",
+    "dev_f1": 0.125,
+    "accuracy": 0.4484,
+    "macro_precision": 0.0897,
+    "macro_recall": 0.2,
+    "macro_f1": 0.1238,
+    "weighted_f1": 0.2777
+  },
+  "tfidf_word_nb": {
+    "config": "alpha=0.01",
+    "dev_f1": 0.7899,
+    "accuracy": 0.852,
+    "macro_precision": 0.8659,
+    "macro_recall": 0.7886,
+    "macro_f1": 0.8147,
+    "weighted_f1": 0.8458
+  },
+  "tfidf_word_lr": {
+    "config": "C=1,ngram=(1, 1)",
+    "dev_f1": 0.8218,
+    "accuracy": 0.87,
+    "macro_precision": 0.8799,
+    "macro_recall": 0.84,
+    "macro_f1": 0.852,
+    "weighted_f1": 0.8706
+  },
+  "tfidf_char_lr": {
+    "config": "C=10,ngram=(2, 4)",
+    "dev_f1": 0.8902,
+    "accuracy": 0.8744,
+    "macro_precision": 0.8759,
+    "macro_recall": 0.8435,
+    "macro_f1": 0.8563,
+    "weighted_f1": 0.8739
+  },
+  "tfidf_word+char_svm": {
+    "config": "C=0.5",
+    "dev_f1": 0.8517,
+    "accuracy": 0.9013,
+    "macro_precision": 0.9226,
+    "macro_recall": 0.861,
+    "macro_f1": 0.8853,
+    "weighted_f1": 0.9001
+  }
+}

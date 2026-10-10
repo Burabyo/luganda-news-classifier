@@ -1,0 +1,203 @@
+{
+  "model": "bilstm_random",
+  "family": "rnn",
+  "seed": 123,
+  "config": {
+    "cell": "lstm",
+    "embeddings": "random",
+    "frozen": false,
+    "hidden": 128,
+    "emb_dim": 300,
+    "lr": 0.001,
+    "batch_size": 32,
+    "max_len": 400,
+    "dropout": 0.5,
+    "patience": 5
+  },
+  "vocab_size": 11484,
+  "test_oov_rate": 0.16328479815995167,
+  "trainable_params": 3952853,
+  "dev_macro_f1": 0.7159932088285229,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.601252761177825,
+      "dev_macro_f1": 0.29815165677234645
+    },
+    {
+      "epoch": 2,
+      "train_loss": 1.4596640678695203,
+      "dev_macro_f1": 0.43903049759229534
+    },
+    {
+      "epoch": 3,
+      "train_loss": 1.1891309288070668,
+      "dev_macro_f1": 0.5397888341052841
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.9879613970291599,
+      "dev_macro_f1": 0.5503313872947635
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.8522374486181059,
+      "dev_macro_f1": 0.5777109193784756
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.707392631878958,
+      "dev_macro_f1": 0.6325439919557566
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.6523944351305139,
+      "dev_macro_f1": 0.6348760763046477
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.6027770412725851,
+      "dev_macro_f1": 0.6587209302325581
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.5495597289925883,
+      "dev_macro_f1": 0.6230759757807958
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.4595834072461852,
+      "dev_macro_f1": 0.6200152555301297
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.40757012599173226,
+      "dev_macro_f1": 0.6589884841578433
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.35167491876661544,
+      "dev_macro_f1": 0.6306931819146318
+    },
+    {
+      "epoch": 13,
+      "train_loss": 0.3359065024537335,
+      "dev_macro_f1": 0.7159932088285229
+    },
+    {
+      "epoch": 14,
+      "train_loss": 0.2985119131404602,
+      "dev_macro_f1": 0.699951801127706
+    },
+    {
+      "epoch": 15,
+      "train_loss": 0.252310636587412,
+      "dev_macro_f1": 0.6969014140857865
+    },
+    {
+      "epoch": 16,
+      "train_loss": 0.20340174936052852,
+      "dev_macro_f1": 0.6609176418977329
+    },
+    {
+      "epoch": 17,
+      "train_loss": 0.18525946196337773,
+      "dev_macro_f1": 0.6490789534553288
+    },
+    {
+      "epoch": 18,
+      "train_loss": 0.16027652475156673,
+      "dev_macro_f1": 0.6758138098870363
+    }
+  ],
+  "test": {
+    "accuracy": 0.7488789237668162,
+    "macro_precision": 0.741000591099058,
+    "macro_recall": 0.7186226948445282,
+    "macro_f1": 0.7202687085667118,
+    "weighted_f1": 0.7615923891423788
+  },
+  "per_class": {
+    "business": {
+      "precision": 0.46153846153846156,
+      "recall": 0.7058823529411765,
+      "f1-score": 0.5581395348837209,
+      "support": 34.0
+    },
+    "health": {
+      "precision": 0.6808510638297872,
+      "recall": 0.6956521739130435,
+      "f1-score": 0.6881720430107527,
+      "support": 46.0
+    },
+    "politics": {
+      "precision": 0.9310344827586207,
+      "recall": 0.81,
+      "f1-score": 0.8663101604278075,
+      "support": 100.0
+    },
+    "religion": {
+      "precision": 0.631578947368421,
+      "recall": 0.631578947368421,
+      "f1-score": 0.631578947368421,
+      "support": 19.0
+    },
+    "sports": {
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1-score": 0.8571428571428571,
+      "support": 24.0
+    },
+    "accuracy": 0.7488789237668162,
+    "macro avg": {
+      "precision": 0.741000591099058,
+      "recall": 0.7186226948445282,
+      "f1-score": 0.7202687085667118,
+      "support": 223.0
+    },
+    "weighted avg": {
+      "precision": 0.7897529367907622,
+      "recall": 0.7488789237668162,
+      "f1-score": 0.7615923891423788,
+      "support": 223.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      24,
+      6,
+      2,
+      2,
+      0
+    ],
+    [
+      8,
+      32,
+      3,
+      3,
+      0
+    ],
+    [
+      16,
+      3,
+      81,
+      0,
+      0
+    ],
+    [
+      3,
+      3,
+      1,
+      12,
+      0
+    ],
+    [
+      1,
+      3,
+      0,
+      2,
+      18
+    ]
+  ],
+  "train_seconds": 461.30619597435
+}

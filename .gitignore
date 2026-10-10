@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+# large / regenerable artefacts (download or retrain with the scripts)
+data/unlabeled/
+models/pretrained/
+models/afroxlmr_base_laft_lug/
+models/best/
+models/*.kv*
+results/predictions/*_probs.npy
+app/model/
+report/sections_static.md
+results/.dl_done
+docs/VIVA_PREP.md
+docs/VIDEO_SCRIPT.md

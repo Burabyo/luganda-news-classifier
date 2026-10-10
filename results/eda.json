@@ -1,0 +1,139 @@
+{
+  "split_sizes": {
+    "train": 771,
+    "dev": 110,
+    "test": 223
+  },
+  "class_distribution": {
+    "train": {
+      "business": 118,
+      "health": 159,
+      "politics": 350,
+      "religion": 63,
+      "sports": 81
+    },
+    "dev": {
+      "business": 17,
+      "health": 23,
+      "politics": 50,
+      "religion": 9,
+      "sports": 11
+    },
+    "test": {
+      "business": 34,
+      "health": 46,
+      "politics": 100,
+      "religion": 19,
+      "sports": 24
+    }
+  },
+  "imbalance_ratio_train": 5.555555555555555,
+  "tokens_per_article": {
+    "count": 771.0,
+    "mean": 232.0,
+    "std": 74.8,
+    "min": 40.0,
+    "25%": 184.5,
+    "50%": 226.0,
+    "75%": 267.5,
+    "max": 824.0
+  },
+  "headline_tokens_mean": 7.950713359273671,
+  "tokens_by_class_mean": {
+    "business": 238.5,
+    "health": 224.2,
+    "politics": 242.8,
+    "religion": 223.0,
+    "sports": 197.7
+  },
+  "train_tokens": 178846,
+  "train_types": 31122,
+  "type_token_ratio": 0.17401563356183533,
+  "hapax_share_of_types": 0.6310648415911574,
+  "test_oov_token_rate": 0.12053216453658631,
+  "test_oov_type_rate": 0.41691911541956983,
+  "raw_apostrophe_variants": {
+    "U+2019 (’)": 13689,
+    "U+0027 (')": 0,
+    "U+2018 (‘)": 153
+  },
+  "raw_replacement_chars": 0,
+  "source_domains": {
+    "gambuuze.ug": 771
+  },
+  "exact_duplicate_texts_across_splits": 1,
+  "test_headlines_seen_in_train": 0,
+  "articles_with_english_words": 72,
+  "top_words_per_class": {
+    "business": [
+      "obwakabaka",
+      "okusobola",
+      "emmwanyi",
+      "emmwaanyi",
+      "nsibirwa",
+      "emirimu",
+      "abavubuka",
+      "okukola",
+      "asabye",
+      "okusinziira",
+      "endagaano",
+      "lino"
+    ],
+    "health": [
+      "ekirwadde",
+      "mukenenya",
+      "corona",
+      "covid",
+      "ssaabasajja",
+      "omusaayi",
+      "enteekateeka",
+      "asabye",
+      "minisitule",
+      "obwakabaka",
+      "lino",
+      "ssennyiga"
+    ],
+    "politics": [
+      "akalulu",
+      "bobi",
+      "wine",
+      "kalulu",
+      "national",
+      "omubaka",
+      "akakiiko",
+      "wadde",
+      "ekibiina",
+      "k'ebyokulonda",
+      "robert",
+      "omusango"
+    ],
+    "religion": [
+      "ssaabasumba",
+      "lwanga",
+      "omusumba",
+      "abadde",
+      "ekkanisa",
+      "katonda",
+      "ettaka",
+      "masaka",
+      "w'essaza",
+      "charles",
+      "ssaabalabirizi",
+      "okusinziira"
+    ],
+    "sports": [
+      "ttiimu",
+      "ggoolo",
+      "empaka",
+      "omupiira",
+      "ssekabembe",
+      "buddu",
+      "mpaka",
+      "kisaawe",
+      "ssaabasajja",
+      "emipiira",
+      "fufa",
+      "bulemeezi"
+    ]
+  }
+}

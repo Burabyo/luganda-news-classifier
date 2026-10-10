@@ -1,0 +1,157 @@
+{
+  "model": "xlmr_base",
+  "family": "transformer",
+  "seed": 13,
+  "pretrained": "../models/pretrained/FacebookAI__xlm-roberta-base",
+  "config": {
+    "model": "../models/pretrained/FacebookAI__xlm-roberta-base",
+    "name": "xlmr_base",
+    "field": "headline+text",
+    "aux": "",
+    "lora": false,
+    "lora_r": 16,
+    "max_len": 256,
+    "bs": 16,
+    "lr": 3e-05,
+    "epochs": 8,
+    "patience": 3
+  },
+  "train_size": 771,
+  "trainable_params": 278047493,
+  "total_params": 278047493,
+  "subword_fertility": 2.7515551472987987,
+  "test_truncated_share": 0.968609865470852,
+  "dev_macro_f1": 0.706453112105286,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.5037359449186214,
+      "dev_macro_f1": 0.125
+    },
+    {
+      "epoch": 2,
+      "train_loss": 1.446863071773148,
+      "dev_macro_f1": 0.125
+    },
+    {
+      "epoch": 3,
+      "train_loss": 1.3352872861498524,
+      "dev_macro_f1": 0.41128689492325854
+    },
+    {
+      "epoch": 4,
+      "train_loss": 1.0333432145948231,
+      "dev_macro_f1": 0.5237316017316017
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.848996520583577,
+      "dev_macro_f1": 0.5954605144810218
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.668776184706991,
+      "dev_macro_f1": 0.6086434255399773
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.5891103511422525,
+      "dev_macro_f1": 0.705857779602737
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.48380897867695055,
+      "dev_macro_f1": 0.706453112105286
+    }
+  ],
+  "test": {
+    "accuracy": 0.7757847533632287,
+    "macro_precision": 0.759012070784015,
+    "macro_recall": 0.7125906133620497,
+    "macro_f1": 0.7304821247404705,
+    "weighted_f1": 0.7762065599438172
+  },
+  "per_class": {
+    "business": {
+      "precision": 0.5,
+      "recall": 0.5882352941176471,
+      "f1-score": 0.5405405405405406,
+      "support": 34.0
+    },
+    "health": {
+      "precision": 0.75,
+      "recall": 0.6521739130434783,
+      "f1-score": 0.6976744186046512,
+      "support": 46.0
+    },
+    "politics": {
+      "precision": 0.8773584905660378,
+      "recall": 0.93,
+      "f1-score": 0.9029126213592233,
+      "support": 100.0
+    },
+    "religion": {
+      "precision": 0.9285714285714286,
+      "recall": 0.6842105263157895,
+      "f1-score": 0.7878787878787878,
+      "support": 19.0
+    },
+    "sports": {
+      "precision": 0.7391304347826086,
+      "recall": 0.7083333333333334,
+      "f1-score": 0.723404255319149,
+      "support": 24.0
+    },
+    "accuracy": 0.7757847533632287,
+    "macro avg": {
+      "precision": 0.759012070784015,
+      "recall": 0.7125906133620497,
+      "f1-score": 0.7304821247404705,
+      "support": 223.0
+    },
+    "weighted avg": {
+      "precision": 0.7830396261625271,
+      "recall": 0.7757847533632287,
+      "f1-score": 0.7762065599438172,
+      "support": 223.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      20,
+      4,
+      5,
+      0,
+      5
+    ],
+    [
+      8,
+      30,
+      6,
+      1,
+      1
+    ],
+    [
+      6,
+      1,
+      93,
+      0,
+      0
+    ],
+    [
+      2,
+      2,
+      2,
+      13,
+      0
+    ],
+    [
+      4,
+      3,
+      0,
+      0,
+      17
+    ]
+  ],
+  "train_seconds": 563.9095511436462
+}

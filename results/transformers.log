@@ -1,0 +1,219 @@
+Loading weights:   0%|          | 0/133 [00:00<?, ?it/s]Loading weights: 100%|██████████| 133/133 [00:00<00:00, 60893.18it/s]
+[transformers] [1mXLMRobertaForSequenceClassification LOAD REPORT[0m from: ../models/pretrained/castorini__afriberta_base
+Key                        | Status     | 
+---------------------------+------------+-
+lm_head.layer_norm.bias    | UNEXPECTED | 
+lm_head.dense.bias         | UNEXPECTED | 
+lm_head.decoder.weight     | UNEXPECTED | 
+lm_head.decoder.bias       | UNEXPECTED | 
+lm_head.dense.weight       | UNEXPECTED | 
+lm_head.layer_norm.weight  | UNEXPECTED | 
+lm_head.bias               | UNEXPECTED | 
+classifier.out_proj.weight | MISSING    | 
+classifier.dense.bias      | MISSING    | 
+classifier.out_proj.bias   | MISSING    | 
+classifier.dense.weight    | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+  [afriberta_base s13] epoch 1 loss=1.4121 dev_f1=0.2283 (40s)
+  [afriberta_base s13] epoch 2 loss=0.8174 dev_f1=0.6578 (80s)
+  [afriberta_base s13] epoch 3 loss=0.3849 dev_f1=0.7091 (119s)
+  [afriberta_base s13] epoch 4 loss=0.2410 dev_f1=0.8308 (157s)
+  [afriberta_base s13] epoch 5 loss=0.1113 dev_f1=0.8646 (195s)
+  [afriberta_base s13] epoch 6 loss=0.0382 dev_f1=0.8723 (232s)
+  [afriberta_base s13] epoch 7 loss=0.0112 dev_f1=0.8547 (269s)
+  [afriberta_base s13] epoch 8 loss=0.0070 dev_f1=0.8415 (305s)
+afriberta_base seed=13 dev=0.8723 test F1=0.7884 acc=0.8296 (308s)
+Loading weights:   0%|          | 0/133 [00:00<?, ?it/s]Loading weights: 100%|██████████| 133/133 [00:00<00:00, 39582.94it/s]
+[transformers] [1mXLMRobertaForSequenceClassification LOAD REPORT[0m from: ../models/pretrained/castorini__afriberta_base
+Key                        | Status     | 
+---------------------------+------------+-
+lm_head.layer_norm.bias    | UNEXPECTED | 
+lm_head.dense.bias         | UNEXPECTED | 
+lm_head.decoder.weight     | UNEXPECTED | 
+lm_head.decoder.bias       | UNEXPECTED | 
+lm_head.dense.weight       | UNEXPECTED | 
+lm_head.layer_norm.weight  | UNEXPECTED | 
+lm_head.bias               | UNEXPECTED | 
+classifier.out_proj.weight | MISSING    | 
+classifier.dense.bias      | MISSING    | 
+classifier.out_proj.bias   | MISSING    | 
+classifier.dense.weight    | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+  [afriberta_base s42] epoch 1 loss=1.3829 dev_f1=0.4206 (36s)
+  [afriberta_base s42] epoch 2 loss=0.7682 dev_f1=0.7415 (72s)
+  [afriberta_base s42] epoch 3 loss=0.3842 dev_f1=0.7867 (108s)
+  [afriberta_base s42] epoch 4 loss=0.1994 dev_f1=0.8048 (146s)
+  [afriberta_base s42] epoch 5 loss=0.0665 dev_f1=0.8352 (183s)
+  [afriberta_base s42] epoch 6 loss=0.0232 dev_f1=0.8490 (221s)
+  [afriberta_base s42] epoch 7 loss=0.0065 dev_f1=0.8679 (259s)
+  [afriberta_base s42] epoch 8 loss=0.0037 dev_f1=0.8730 (297s)
+afriberta_base seed=42 dev=0.8730 test F1=0.7679 acc=0.8161 (300s)
+Loading weights:   0%|          | 0/133 [00:00<?, ?it/s]Loading weights: 100%|██████████| 133/133 [00:00<00:00, 47395.28it/s]
+[transformers] [1mXLMRobertaForSequenceClassification LOAD REPORT[0m from: ../models/pretrained/castorini__afriberta_base
+Key                        | Status     | 
+---------------------------+------------+-
+lm_head.layer_norm.bias    | UNEXPECTED | 
+lm_head.dense.bias         | UNEXPECTED | 
+lm_head.decoder.weight     | UNEXPECTED | 
+lm_head.decoder.bias       | UNEXPECTED | 
+lm_head.dense.weight       | UNEXPECTED | 
+lm_head.layer_norm.weight  | UNEXPECTED | 
+lm_head.bias               | UNEXPECTED | 
+classifier.out_proj.weight | MISSING    | 
+classifier.dense.bias      | MISSING    | 
+classifier.out_proj.bias   | MISSING    | 
+classifier.dense.weight    | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+  [afriberta_base s123] epoch 1 loss=1.3808 dev_f1=0.3065 (38s)
+  [afriberta_base s123] epoch 2 loss=0.8189 dev_f1=0.6796 (75s)
+  [afriberta_base s123] epoch 3 loss=0.4067 dev_f1=0.8283 (111s)
+  [afriberta_base s123] epoch 4 loss=0.1907 dev_f1=0.8638 (147s)
+  [afriberta_base s123] epoch 5 loss=0.0719 dev_f1=0.8818 (184s)
+  [afriberta_base s123] epoch 6 loss=0.0217 dev_f1=0.8744 (222s)
+  [afriberta_base s123] epoch 7 loss=0.0114 dev_f1=0.8502 (260s)
+  [afriberta_base s123] epoch 8 loss=0.0067 dev_f1=0.8730 (299s)
+afriberta_base seed=123 dev=0.8818 test F1=0.7755 acc=0.8251 (302s)
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 11542.13it/s]
+[transformers] [1mXLMRobertaForSequenceClassification LOAD REPORT[0m from: ../models/pretrained/Davlan__afro-xlmr-base
+Key                        | Status     | 
+---------------------------+------------+-
+lm_head.layer_norm.bias    | UNEXPECTED | 
+lm_head.bias               | UNEXPECTED | 
+lm_head.dense.weight       | UNEXPECTED | 
+lm_head.layer_norm.weight  | UNEXPECTED | 
+lm_head.dense.bias         | UNEXPECTED | 
+classifier.dense.weight    | MISSING    | 
+classifier.out_proj.weight | MISSING    | 
+classifier.dense.bias      | MISSING    | 
+classifier.out_proj.bias   | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (664 > 512). Running this sequence through the model will result in indexing errors
+  [afroxlmr_base s13] epoch 1 loss=1.4933 dev_f1=0.1250 (73s)
+  [afroxlmr_base s13] epoch 2 loss=1.0329 dev_f1=0.7708 (145s)
+  [afroxlmr_base s13] epoch 3 loss=0.5026 dev_f1=0.8290 (218s)
+  [afroxlmr_base s13] epoch 4 loss=0.2978 dev_f1=0.8336 (287s)
+  [afroxlmr_base s13] epoch 5 loss=0.1858 dev_f1=0.8014 (361s)
+  [afroxlmr_base s13] epoch 6 loss=0.1050 dev_f1=0.8262 (436s)
+  [afroxlmr_base s13] epoch 7 loss=0.0728 dev_f1=0.8357 (514s)
+  [afroxlmr_base s13] epoch 8 loss=0.0567 dev_f1=0.8357 (586s)
+afroxlmr_base seed=13 dev=0.8357 test F1=0.9005 acc=0.9148 (594s)
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 11787.97it/s]
+[transformers] [1mXLMRobertaForSequenceClassification LOAD REPORT[0m from: ../models/pretrained/Davlan__afro-xlmr-base
+Key                        | Status     | 
+---------------------------+------------+-
+lm_head.layer_norm.bias    | UNEXPECTED | 
+lm_head.bias               | UNEXPECTED | 
+lm_head.dense.weight       | UNEXPECTED | 
+lm_head.layer_norm.weight  | UNEXPECTED | 
+lm_head.dense.bias         | UNEXPECTED | 
+classifier.dense.weight    | MISSING    | 
+classifier.out_proj.weight | MISSING    | 
+classifier.dense.bias      | MISSING    | 
+classifier.out_proj.bias   | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (664 > 512). Running this sequence through the model will result in indexing errors
+  [afroxlmr_base s42] epoch 1 loss=1.4542 dev_f1=0.1250 (68s)
+  [afroxlmr_base s42] epoch 2 loss=1.0922 dev_f1=0.6313 (137s)
+  [afroxlmr_base s42] epoch 3 loss=0.6069 dev_f1=0.7294 (206s)
+  [afroxlmr_base s42] epoch 4 loss=0.3527 dev_f1=0.7710 (275s)
+  [afroxlmr_base s42] epoch 5 loss=0.1990 dev_f1=0.8161 (343s)
+  [afroxlmr_base s42] epoch 6 loss=0.1323 dev_f1=0.7841 (410s)
+  [afroxlmr_base s42] epoch 7 loss=0.0784 dev_f1=0.8186 (1413s)
+  [afroxlmr_base s42] epoch 8 loss=0.0663 dev_f1=0.8164 (2692s)
+afroxlmr_base seed=42 dev=0.8186 test F1=0.8902 acc=0.9058 (3600s)
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 10215.21it/s]
+[transformers] [1mXLMRobertaForSequenceClassification LOAD REPORT[0m from: ../models/pretrained/Davlan__afro-xlmr-base
+Key                        | Status     | 
+---------------------------+------------+-
+lm_head.layer_norm.bias    | UNEXPECTED | 
+lm_head.bias               | UNEXPECTED | 
+lm_head.dense.weight       | UNEXPECTED | 
+lm_head.layer_norm.weight  | UNEXPECTED | 
+lm_head.dense.bias         | UNEXPECTED | 
+classifier.dense.weight    | MISSING    | 
+classifier.out_proj.weight | MISSING    | 
+classifier.dense.bias      | MISSING    | 
+classifier.out_proj.bias   | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (664 > 512). Running this sequence through the model will result in indexing errors
+  [afroxlmr_base s123] epoch 1 loss=1.5027 dev_f1=0.1250 (2172s)
+  [afroxlmr_base s123] epoch 2 loss=1.0868 dev_f1=0.6860 (3140s)
+  [afroxlmr_base s123] epoch 3 loss=0.5636 dev_f1=0.7993 (3587s)
+  [afroxlmr_base s123] epoch 4 loss=0.3093 dev_f1=0.7929 (3961s)
+  [afroxlmr_base s123] epoch 5 loss=0.2012 dev_f1=0.8494 (5310s)
+  [afroxlmr_base s123] epoch 6 loss=0.1292 dev_f1=0.8509 (5439s)
+  [afroxlmr_base s123] epoch 7 loss=0.0796 dev_f1=0.8600 (5508s)
+  [afroxlmr_base s123] epoch 8 loss=0.0714 dev_f1=0.8597 (5574s)
+afroxlmr_base seed=123 dev=0.8600 test F1=0.8853 acc=0.9058 (5581s)
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 11614.81it/s]
+[transformers] [1mXLMRobertaForSequenceClassification LOAD REPORT[0m from: ../models/pretrained/FacebookAI__xlm-roberta-base
+Key                         | Status     | 
+----------------------------+------------+-
+lm_head.layer_norm.bias     | UNEXPECTED | 
+lm_head.bias                | UNEXPECTED | 
+lm_head.dense.weight        | UNEXPECTED | 
+lm_head.layer_norm.weight   | UNEXPECTED | 
+roberta.pooler.dense.weight | UNEXPECTED | 
+roberta.pooler.dense.bias   | UNEXPECTED | 
+lm_head.dense.bias          | UNEXPECTED | 
+classifier.out_proj.weight  | MISSING    | 
+classifier.dense.weight     | MISSING    | 
+classifier.out_proj.bias    | MISSING    | 
+classifier.dense.bias       | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (664 > 512). Running this sequence through the model will result in indexing errors
+  [xlmr_base s13] epoch 1 loss=1.5037 dev_f1=0.1250 (67s)
+  [xlmr_base s13] epoch 2 loss=1.4469 dev_f1=0.1250 (133s)
+  [xlmr_base s13] epoch 3 loss=1.3353 dev_f1=0.4113 (201s)
+  [xlmr_base s13] epoch 4 loss=1.0333 dev_f1=0.5237 (271s)
+  [xlmr_base s13] epoch 5 loss=0.8490 dev_f1=0.5955 (340s)
+  [xlmr_base s13] epoch 6 loss=0.6688 dev_f1=0.6086 (405s)
+  [xlmr_base s13] epoch 7 loss=0.5891 dev_f1=0.7059 (486s)
+  [xlmr_base s13] epoch 8 loss=0.4838 dev_f1=0.7065 (559s)
+xlmr_base seed=13 dev=0.7065 test F1=0.7305 acc=0.7758 (564s)
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 10757.43it/s]
+[transformers] [1mXLMRobertaForSequenceClassification LOAD REPORT[0m from: ../models/pretrained/FacebookAI__xlm-roberta-base
+Key                         | Status     | 
+----------------------------+------------+-
+lm_head.layer_norm.bias     | UNEXPECTED | 
+lm_head.bias                | UNEXPECTED | 
+lm_head.dense.weight        | UNEXPECTED | 
+lm_head.layer_norm.weight   | UNEXPECTED | 
+roberta.pooler.dense.weight | UNEXPECTED | 
+roberta.pooler.dense.bias   | UNEXPECTED | 
+lm_head.dense.bias          | UNEXPECTED | 
+classifier.out_proj.weight  | MISSING    | 
+classifier.dense.weight     | MISSING    | 
+classifier.out_proj.bias    | MISSING    | 
+classifier.dense.bias       | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (664 > 512). Running this sequence through the model will result in indexing errors
+  [xlmr_base s42] epoch 1 loss=1.4960 dev_f1=0.1250 (67s)
+  [xlmr_base s42] epoch 2 loss=1.3881 dev_f1=0.1250 (135s)
+  [xlmr_base s42] epoch 3 loss=1.3092 dev_f1=0.1585 (203s)
+  [xlmr_base s42] epoch 4 loss=1.1937 dev_f1=0.2489 (274s)
+  [xlmr_base s42] epoch 5 loss=1.0932 dev_f1=0.3630 (350s)

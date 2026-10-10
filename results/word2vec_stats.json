@@ -1,0 +1,79 @@
+{
+  "cc100_nonempty_lines": 315507,
+  "cc100_kept_lines": 135406,
+  "cc100_kept_ratio": 0.4291695588370464,
+  "wiki_paragraphs": 81887,
+  "wiki_kept": 16479,
+  "masakhanews_train_sentences": 9121,
+  "heldout_sentences_checked": 3518,
+  "heldout_sentences_found_in_unlabeled": 0,
+  "total_sentences": 161006,
+  "total_tokens": 3893831,
+  "vocab_size": 133422,
+  "nearest_neighbours": {
+    "omupiira": [
+      "mupiira",
+      "gw'omukwano",
+      "ng'omupiira",
+      "ogw'omukwano",
+      "gw'ensiimbi",
+      "gw'okubaka"
+    ],
+    "ekkanisa": [
+      "n'ekkanisa",
+      "church",
+      "'ndizimba",
+      "ezimbibwe",
+      "kkanisa",
+      "w'ekkanisa"
+    ],
+    "ekirwadde": [
+      "ssennyiga",
+      "coronavirus",
+      "kw'ekirwadde",
+      "corona",
+      "olw'ekirwadde",
+      "kirwadde"
+    ],
+    "akalulu": [
+      "k'obwapulezidenti",
+      "k'ekikungo",
+      "kalulu",
+      "obululu",
+      "akamyufu",
+      "ak'ekikungo"
+    ],
+    "ssente": [
+      "ensimbi",
+      "nsimbi",
+      "looni",
+      "z'obupangisa",
+      "okusasula",
+      "ddoola"
+    ],
+    "eddwaliro": [
+      "ly'abalwadde",
+      "beemitwe",
+      "erye",
+      "birumbye",
+      "yeeralikiriza",
+      "kaweweta"
+    ],
+    "katonda": [
+      "ow'amazima",
+      "okubikkulibwa",
+      "mutonzi",
+      "tuyigirize",
+      "eyatonda",
+      "obutanoonyezeka"
+    ],
+    "ttiimu": [
+      "ey'omupiira",
+      "y'eggwanga",
+      "tiimu",
+      "y'omupiira",
+      "ng'azannyira",
+      "abazannyi"
+    ]
+  }
+}
