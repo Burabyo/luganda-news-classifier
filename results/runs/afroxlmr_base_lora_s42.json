@@ -1,0 +1,177 @@
+{
+  "model": "afroxlmr_base_lora",
+  "family": "transformer",
+  "seed": 42,
+  "pretrained": "../models/pretrained/Davlan__afro-xlmr-base",
+  "config": {
+    "model": "../models/pretrained/Davlan__afro-xlmr-base",
+    "name": "afroxlmr_base_lora",
+    "field": "headline+text",
+    "aux": "",
+    "lora": true,
+    "lora_r": 16,
+    "max_len": 256,
+    "bs": 16,
+    "lr": 0.0005,
+    "epochs": 12,
+    "patience": 4
+  },
+  "train_size": 771,
+  "trainable_params": 1184261,
+  "total_params": 279231754,
+  "subword_fertility": 2.7515551472987987,
+  "test_truncated_share": 0.968609865470852,
+  "dev_macro_f1": 0.8705067437690059,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.4691184299929132,
+      "dev_macro_f1": 0.125
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.8987365084399509,
+      "dev_macro_f1": 0.731826341856885
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.605656470770038,
+      "dev_macro_f1": 0.7983291345370157
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.4835471067162069,
+      "dev_macro_f1": 0.7910663271878576
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.35219514478196123,
+      "dev_macro_f1": 0.7758788020490148
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.29200005918818533,
+      "dev_macro_f1": 0.8225903041973186
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.21691398117715438,
+      "dev_macro_f1": 0.8444640892660693
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.1457288250068611,
+      "dev_macro_f1": 0.8462064825930373
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.11758646572744968,
+      "dev_macro_f1": 0.8623901098901099
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.092369251783053,
+      "dev_macro_f1": 0.8705067437690059
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.07119540301491005,
+      "dev_macro_f1": 0.8345567765567765
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.07622518805707243,
+      "dev_macro_f1": 0.8541758345566965
+    }
+  ],
+  "test": {
+    "accuracy": 0.8789237668161435,
+    "macro_precision": 0.879635953026197,
+    "macro_recall": 0.8439180688293625,
+    "macro_f1": 0.8584050847449085,
+    "weighted_f1": 0.8753455788034942
+  },
+  "per_class": {
+    "business": {
+      "precision": 0.8518518518518519,
+      "recall": 0.6764705882352942,
+      "f1-score": 0.7540983606557377,
+      "support": 34.0
+    },
+    "health": {
+      "precision": 0.9024390243902439,
+      "recall": 0.8043478260869565,
+      "f1-score": 0.8505747126436781,
+      "support": 46.0
+    },
+    "politics": {
+      "precision": 0.875,
+      "recall": 0.98,
+      "f1-score": 0.9245283018867925,
+      "support": 100.0
+    },
+    "religion": {
+      "precision": 0.8888888888888888,
+      "recall": 0.8421052631578947,
+      "f1-score": 0.8648648648648649,
+      "support": 19.0
+    },
+    "sports": {
+      "precision": 0.88,
+      "recall": 0.9166666666666666,
+      "f1-score": 0.8979591836734694,
+      "support": 24.0
+    },
+    "accuracy": 0.8789237668161435,
+    "macro avg": {
+      "precision": 0.879635953026197,
+      "recall": 0.8439180688293625,
+      "f1-score": 0.8584050847449085,
+      "support": 223.0
+    },
+    "weighted avg": {
+      "precision": 0.8788522285820767,
+      "recall": 0.8789237668161435,
+      "f1-score": 0.8753455788034942,
+      "support": 223.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      23,
+      2,
+      7,
+      0,
+      2
+    ],
+    [
+      3,
+      37,
+      5,
+      1,
+      0
+    ],
+    [
+      1,
+      0,
+      98,
+      0,
+      1
+    ],
+    [
+      0,
+      2,
+      1,
+      16,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      22
+    ]
+  ],
+  "train_seconds": 426.01650190353394
+}

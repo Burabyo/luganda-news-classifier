@@ -22,12 +22,24 @@ import numpy as np
 import pandas as pd
 import torch
 from torch.utils.data import DataLoader
-from transformers import AutoModelForSequenceClassification, AutoTokenizer, get_linear_schedule_with_warmup
+from transformers import (AutoModelForSequenceClassification, AutoTokenizer, PreTrainedTokenizerFast,
+                          get_linear_schedule_with_warmup)
 
 from data import ID2LABEL, LABEL2ID, MODELS_DIR, load_auxiliary, load_lug
 from metrics import compute, full_report, save_run
 
 DEVICE = "mps" if torch.backends.mps.is_available() else ("cuda" if torch.cuda.is_available() else "cpu")
+
+
+def load_tokenizer(path):
+    """Serengeti ships a BPE tokenizer.json but declares XLMRobertaTokenizer (Unigram) in its config,
+    which current Transformers versions refuse to load; in that case read tokenizer.json directly."""
+    try:
+        return AutoTokenizer.from_pretrained(path)
+    except (TypeError, ValueError):
+        return PreTrainedTokenizerFast(tokenizer_file=f"{path}/tokenizer.json", bos_token="<s>", eos_token="</s>",
+                                       cls_token="<s>", sep_token="</s>", pad_token="<pad>", unk_token="<unk>",
+                                       mask_token="<mask>")
 
 
 def make_loader(tok, df, max_len, bs, shuffle, seed=0):
@@ -64,9 +76,11 @@ def run(args, seed):
     y_dev = dev["category"].map(LABEL2ID).values
     y_te = test["category"].map(LABEL2ID).values
 
-    tok = AutoTokenizer.from_pretrained(args.model)
+    tok = load_tokenizer(args.model)
     model = AutoModelForSequenceClassification.from_pretrained(
         args.model, num_labels=len(LABEL2ID), id2label=ID2LABEL, label2id=LABEL2ID)
+    if args.grad_ckpt:  # trade compute for memory: recompute activations in the backward pass
+        model.gradient_checkpointing_enable()
     if args.lora:
         from peft import LoraConfig, get_peft_model
         cfg = LoraConfig(task_type="SEQ_CLS", r=args.lora_r, lora_alpha=2 * args.lora_r, lora_dropout=0.1,
@@ -148,6 +162,7 @@ def main():
     ap.add_argument("--lr", type=float, default=3e-5)
     ap.add_argument("--epochs", type=int, default=8)
     ap.add_argument("--patience", type=int, default=3)
+    ap.add_argument("--grad_ckpt", action="store_true")
     ap.add_argument("--save", default="")
     args = ap.parse_args()
     for s in map(int, args.seeds.split(",")):

@@ -1,0 +1,18 @@
+{
+  "lines": 25000,
+  "train_lines": 24000,
+  "trainable_params": 86293650,
+  "ppl_before": 15.79667826604512,
+  "ppl_after": 8.314565773875714,
+  "updates": 1500,
+  "seconds": 1292.334549188614,
+  "config": {
+    "base": "Davlan/afro-xlmr-base",
+    "max_len": 128,
+    "batch_size": 16,
+    "grad_accumulation": 2,
+    "lr": 5e-05,
+    "epochs": 1,
+    "mlm_prob": 0.15
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "model": "final_afroxlmr_base_s123",
+  "baseline": "tfidf_word+char_svm",
+  "n_test": 223,
+  "model_errors": 24,
+  "baseline_errors": 22,
+  "both_wrong": 15,
+  "only_model_wrong": 9,
+  "only_baseline_wrong": 7,
+  "top_confusions": [
+    {
+      "gold": "health",
+      "pred": "politics",
+      "count": 5
+    },
+    {
+      "gold": "business",
+      "pred": "politics",
+      "count": 4
+    },
+    {
+      "gold": "religion",
+      "pred": "health",
+      "count": 3
+    },
+    {
+      "gold": "business",
+      "pred": "sports",
+      "count": 2
+    },
+    {
+      "gold": "business",
+      "pred": "health",
+      "count": 2
+    },
+    {
+      "gold": "sports",
+      "pred": "health",
+      "count": 2
+    },
+    {
+      "gold": "health",
+      "pred": "religion",
+      "count": 1
+    },
+    {
+      "gold": "health",
+      "pred": "sports",
+      "count": 1
+    },
+    {
+      "gold": "politics",
+      "pred": "sports",
+      "count": 1
+    },
+    {
+      "gold": "politics",
+      "pred": "health",
+      "count": 1
+    }
+  ],
+  "accuracy_by_length": {
+    "mean": {
+      "<150": 0.964,
+      "150-250": 0.882,
+      "250-350": 0.884,
+      ">350": 0.875
+    },
+    "count": {
+      "<150": 28,
+      "150-250": 110,
+      "250-350": 69,
+      ">350": 16
+    }
+  },
+  "accuracy_by_oov_tercile": {
+    "mean": {
+      "low OOV": 0.92,
+      "mid OOV": 0.905,
+      "high OOV": 0.851
+    },
+    "count": {
+      "low OOV": 75,
+      "mid OOV": 74,
+      "high OOV": 74
+    }
+  },
+  "mean_conf_correct": 0.9868587851524353,
+  "mean_conf_wrong": 0.9266102313995361,
+  "errors_with_conf_below_0.6": 0,
+  "confident_correct_examples": [
+    {
+      "gold": "politics",
+      "headline": "Kyagulanyi asabye aba NUP obutasojja ba NRM abawanguddwa",
+      "confidence": 0.997273862361908
+    },
+    {
+      "gold": "health",
+      "headline": "Abantu ba Kabaka basabiddwa okujjumbira okwegemesa COVID-19",
+      "confidence": 0.9923855066299438
+    },
+    {
+      "gold": "sports",
+      "headline": "Masaza Cup 2021 : Buddu ekubye Mawogola 6- 1",
+      "confidence": 0.9918791651725769
+    },
+    {
+      "gold": "religion",
+      "headline": "Obwakabaka bukungubagidde omusumba Kaggwa",
+      "confidence": 0.9913227558135986
+    },
+    {
+      "gold": "business",
+      "headline": "Obwakabaka butandise okwetegekera olunaku lw'obwegassi",
+      "confidence": 0.9912247061729431
+    }
+  ],
+  "per_class_f1": {
+    "business": {
+      "model": 0.8524590163934426,
+      "baseline": 0.8529411764705882
+    },
+    "health": {
+      "model": 0.8387096774193549,
+      "baseline": 0.8723404255319149
+    },
+    "politics": {
+      "model": 0.9371980676328503,
+      "baseline": 0.9320388349514563
+    },
+    "religion": {
+      "model": 0.8571428571428571,
+      "baseline": 0.8125
+    },
+    "sports": {
+      "model": 0.88,
+      "baseline": 0.9565217391304348
+    }
+  }
+}

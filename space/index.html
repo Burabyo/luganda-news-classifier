@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luganda News Topic Classifier</title>
+<style>
+  :root { --bg:#f7f7f5; --card:#ffffff; --ink:#1d1d1f; --muted:#5f6368; --line:#e2e2e2; --accent:#1f5fa8; --accent-ink:#ffffff;
+          --bar:#1f5fa8; --bar-bg:#e8eef6; --warn-bg:#fff4e0; --warn-ink:#7a4b00; --ok-bg:#e7f5ec; --ok-ink:#145c32;
+          --pos:rgba(214,69,65,.28); --neg:rgba(52,120,198,.22); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --bg:#16181b; --card:#1f2226; --ink:#ececec; --muted:#a3a8ae; --line:#33373c; --accent:#6aa6ef; --accent-ink:#0d1726;
+    --bar:#6aa6ef; --bar-bg:#2a3340; --warn-bg:#3a2c12; --warn-ink:#ffd48a; --ok-bg:#15301f; --ok-ink:#9be3b5;
+    --pos:rgba(240,110,100,.35); --neg:rgba(100,160,240,.30); } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 1.6rem; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 18px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  textarea { width: 100%; min-height: 170px; resize: vertical; padding: 12px; border-radius: 8px; border: 1px solid var(--line);
+             background: var(--bg); color: var(--ink); font: inherit; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 10px; }
+  button { background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 8px; padding: 10px 18px; font: inherit; font-weight: 600; cursor: pointer; }
+  button:disabled { opacity: .5; cursor: not-allowed; }
+  label.chk { color: var(--muted); font-size: .92rem; display: flex; gap: 6px; align-items: center; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+  .bar { margin: 8px 0; }
+  .bar .lab { display: flex; justify-content: space-between; font-size: .95rem; }
+  .bar .track { height: 10px; background: var(--bar-bg); border-radius: 6px; overflow: hidden; margin-top: 3px; }
+  .bar .fill { height: 100%; background: var(--bar); width: 0; transition: width .4s; }
+  .note { border-radius: 8px; padding: 10px 12px; font-size: .95rem; margin-top: 8px; }
+  .note.warn { background: var(--warn-bg); color: var(--warn-ink); }
+  .note.ok { background: var(--ok-bg); color: var(--ok-ink); }
+  .status { color: var(--muted); font-size: .9rem; }
+  .prog { height: 6px; background: var(--bar-bg); border-radius: 4px; overflow: hidden; margin-top: 6px; }
+  .prog > div { height: 100%; width: 0; background: var(--bar); transition: width .2s; }
+  .ex { display: flex; flex-wrap: wrap; gap: 8px; }
+  .ex button { background: var(--bar-bg); color: var(--ink); font-weight: 500; font-size: .88rem; padding: 6px 10px; }
+  .sent { padding: 2px 3px; border-radius: 4px; line-height: 1.9; }
+  h2 { font-size: 1.05rem; margin: 0 0 8px; }
+  .muted { color: var(--muted); font-size: .9rem; }
+  a { color: var(--accent); }
+  footer { color: var(--muted); font-size: .88rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>📰 Luganda News Topic Classifier</h1>
+  <p class="sub">Paste a Luganda news article or headline. A Transformer (AfroXLMR-base fine-tuned on the Luganda part of MasakhaNEWS) predicts its topic: <b>business, health, politics, religion or sports</b>. The model runs <b>in your browser</b>. <i>Wandiika oba teekamu amawulire mu Luganda.</i></p>
+
+  <div class="card">
+    <div class="status" id="status">Loading the model (~280 MB, downloaded once and then cached by your browser)…</div>
+    <div class="prog"><div id="prog"></div></div>
+  </div>
+
+  <div class="card">
+    <textarea id="txt" placeholder="Wandiika wano amawulire mu Luganda…"></textarea>
+    <div class="row">
+      <button id="go" disabled>Classify / Gerageza</button>
+      <label class="chk"><input type="checkbox" id="explain" checked> Show which sentences influenced the prediction</label>
+    </div>
+    <div style="margin-top:12px" class="muted">Examples:</div>
+    <div class="ex" id="examples"></div>
+  </div>
+
+  <div class="grid">
+    <div class="card"><h2>Topic probabilities</h2><div id="bars" class="muted">No prediction yet.</div><div id="msg"></div></div>
+    <div class="card"><h2>Why? (sentence importance)</h2><div id="why" class="muted">Red = pushed towards the predicted topic, blue = against. Each sentence is removed in turn and the drop in probability is measured (occlusion).</div></div>
+  </div>
+
+  <div class="card">
+    <h2>About this model</h2>
+    <p class="muted" style="margin:0 0 6px">Test set (223 Luganda articles): this model reaches <b>89.2% accuracy and 87.3 macro-F1</b>; the same configuration averages 90.9% accuracy and 89.2 macro-F1 over 3 seeds, against 88.5 macro-F1 for the best TF-IDF baseline. Model: <a href="https://huggingface.co/Burabyo/luganda-news-afroxlmr" target="_blank">Burabyo/luganda-news-afroxlmr</a> (8-bit ONNX in the browser). Code, experiments and report: <a href="https://github.com/Burabyo/luganda-news-classifier" target="_blank">github.com/Burabyo/luganda-news-classifier</a>.</p>
+    <p class="muted" style="margin:0"><b>Limitations:</b> trained on 771 articles from one news site (Gambuuze); only five topics, so text about anything else is still forced into one of them; inputs are truncated to 256 subword tokens; confidence scores tend to be too high.</p>
+  </div>
+  <footer>Data: MasakhaNEWS (Adelani et al., 2023). Base model: AfroXLMR-base (Alabi et al., 2022). Runtime: Transformers.js / ONNX Runtime Web.</footer>
+</main>
+
+<script type="module">
+import { pipeline } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.1";
+
+const MODEL = "Burabyo/luganda-news-afroxlmr";
+const CONF_THRESHOLD = 0.60;
+const INFO = { business: "Business / ebyobusuubuzi", health: "Health / ebyobulamu", politics: "Politics / ebyobufuzi",
+               religion: "Religion / eddiini", sports: "Sports / emizannyo" };
+const EXAMPLES = [
+  ["Sports", "Ttiimu y'eggwanga The Cranes ewangudde omupiira gwayo ogw'okwetegekera empaka za AFCON nga ekubye ggoolo bbiri ku emu mu kisaawe e Namboole."],
+  ["Health", "Minisitule y'ebyobulamu erabudde abantu okwegendereza ekirwadde kya kolera ekibaluseewo mu disitulikiti y'e Kasese, abalwadde basatu bafudde."],
+  ["Religion", "Ssaabasumba w'essaza ekkulu erya Kampala akulembeddemu Missa ey'okujjukira abajulizi e Namugongo, abakkiriza bangi beetabye mu kusaba."],
+  ["Politics", "Omubaka wa Palamenti akubye ebituli mu mbalirira y'eggwanga gye yayise ey'ekyejo, n'agamba nti gavumenti erina okulongoosa enteekateeka z'okulonda."],
+  ["Business", "Abalimi b'emmwanyi mu Masaka basabye gavumenti okubayamba ku bbeeyi y'emmwanyi eyeeyongedde okukka ku katale k'ensi yonna."],
+  ["Mixed topic", "Kabaka asabye abantu be okwettanira okulima n'okwekebeza omusaayi okumanya obulamu bwabwe."],
+  ["English (out of scope)", "The president addressed the nation on the new tax measures."],
+];
+
+// same normalisation as training (src/data.py)
+function normalize(t) {
+  return t.normalize("NFC").replace(/�/g, " ").replace(/https?:\/\/\S+|www\.\S+/g, " ")
+          .replace(/[’‘`´ʼ]/g, "'").replace(/[“”„«»]/g, '"')
+          .replace(/\s+/g, " ").trim();
+}
+
+const $ = (id) => document.getElementById(id);
+const exBox = $("examples");
+for (const [name, text] of EXAMPLES) {
+  const b = document.createElement("button"); b.textContent = name;
+  b.onclick = () => { $("txt").value = text; if (clf) run(); };
+  exBox.appendChild(b);
+}
+
+let clf = null;
+const files = {};
+try {
+  clf = await pipeline("text-classification", MODEL, {
+    dtype: "q8",
+    progress_callback: (p) => {
+      if (p.status === "progress" && p.total) {
+        files[p.file] = [p.loaded, p.total];
+        const [l, t] = Object.values(files).reduce((a, [x, y]) => [a[0] + x, a[1] + y], [0, 0]);
+        $("prog").style.width = (100 * l / t).toFixed(1) + "%";
+        $("status").textContent = `Loading the model… ${(l / 1e6).toFixed(0)} / ${(t / 1e6).toFixed(0)} MB (cached after the first visit)`;
+      }
+    },
+  });
+  $("prog").style.width = "100%";
+  $("status").textContent = "✅ Model loaded. Paste Luganda text or pick an example.";
+  $("go").disabled = false;
+} catch (e) {
+  $("status").textContent = "❌ Could not load the model: " + e.message;
+}
+
+async function scores(text) {
+  const out = await clf(text, { top_k: 5 });
+  const s = {}; for (const o of out) s[o.label] = o.score; return s;
+}
+
+async function run() {
+  const text = normalize($("txt").value);
+  if (text.split(" ").length < 3) { $("msg").innerHTML = '<div class="note warn">Please enter at least a sentence of Luganda text.</div>'; return; }
+  $("go").disabled = true; $("go").textContent = "Classifying…";
+  const t0 = performance.now();
+  const s = await scores(text);
+  const ms = performance.now() - t0;
+  const ranked = Object.entries(s).sort((a, b) => b[1] - a[1]);
+  const [top, conf] = ranked[0];
+  $("bars").innerHTML = ranked.map(([l, p]) =>
+    `<div class="bar"><div class="lab"><span>${INFO[l] || l}</span><span>${(100 * p).toFixed(1)}%</span></div>
+     <div class="track"><div class="fill" style="width:${(100 * p).toFixed(1)}%"></div></div></div>`).join("");
+  $("msg").innerHTML = conf < CONF_THRESHOLD
+    ? `<div class="note warn">⚠️ Low confidence (${(100 * conf).toFixed(0)}%). The text may be about a topic outside the five trained categories, may not be Luganda, or may mix several topics.</div>`
+    : `<div class="note ok">Predicted topic: <b>${INFO[top]}</b> (${(100 * conf).toFixed(0)}% confidence, ${ms.toFixed(0)} ms).</div>`;
+
+  if ($("explain").checked) {
+    const sents = text.match(/[^.!?]+[.!?]*/g).map(x => x.trim()).filter(Boolean).slice(0, 12);
+    if (sents.length < 2) {
+      $("why").innerHTML = `<span class="muted">Only one sentence, so sentence importance needs at least two. Try a longer article.</span>`;
+    } else {
+      $("why").innerHTML = '<span class="muted">Computing…</span>';
+      const drops = [];
+      for (let i = 0; i < sents.length; i++) {
+        const rest = sents.filter((_, j) => j !== i).join(" ");
+        drops.push(conf - (await scores(rest))[top]);
+      }
+      const m = Math.max(1e-6, ...drops.map(Math.abs));
+      $("why").innerHTML = sents.map((x, i) => {
+        const a = Math.abs(drops[i]) / m;
+        const col = drops[i] >= 0 ? `rgba(214,69,65,${(0.08 + 0.4 * a).toFixed(2)})` : `rgba(52,120,198,${(0.08 + 0.35 * a).toFixed(2)})`;
+        return `<span class="sent" style="background:${col}" title="Δp = ${drops[i].toFixed(3)}">${x}</span>`;
+      }).join(" ");
+    }
+  } else { $("why").innerHTML = '<span class="muted">Turned off.</span>'; }
+  $("go").disabled = false; $("go").textContent = "Classify / Gerageza";
+}
+$("go").onclick = run;
+</script>
+</body>
+</html>

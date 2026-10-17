@@ -4,10 +4,10 @@
 
 | | |
 |---|---|
-| 🌐 **Live demo** | `<HF_SPACE_URL>` |
-| 🎥 **Demo video** | `<VIDEO_URL>` |
+| 🌐 **Live demo** | https://huggingface.co/spaces/Burabyo/luganda-news-classifier |
+| 🎥 **Demo video** | _link to be added_ |
 | 📄 **Report (PDF)** | [`report/report.pdf`](report/report.pdf) |
-| 🤗 **Fine-tuned model** | `<HF_MODEL_URL>` |
+| 🤗 **Fine-tuned model** | https://huggingface.co/Burabyo/luganda-news-afroxlmr |
 
 ---
 
@@ -46,11 +46,51 @@ All hyperparameters and checkpoints are selected on the **dev** set, and the tes
 
 ## 4. Results
 
-<!-- RESULTS_TABLE -->
+Test set: 223 Luganda articles. Neural models: mean ± std over 3 seeds. All values are percentages.
+
+| ID | Approach | Seeds | Dev macro-F1 | Test accuracy | Test macro-F1 | Test weighted-F1 |
+|---|---|---|---|---|---|---|
+| E0 | Majority class (always 'politics') | 1 | 12.5 | 44.8 | 12.4 | 27.8 |
+| E1 | TF-IDF words + Complement Naive Bayes | 1 | 79.0 | 85.2 | 81.5 | 84.6 |
+| E2 | TF-IDF words + Logistic Regression (baseline) | 1 | 82.2 | 87.0 | 85.2 | 87.1 |
+| E3 | TF-IDF char 2-4-grams + Logistic Regression | 1 | 89.0 | 87.4 | 85.6 | 87.4 |
+| E4 | TF-IDF words + chars + Linear SVM | 1 | 85.2 | 90.1 | 88.5 | 90.0 |
+| E5 | BiLSTM + attention, random embeddings | 3 | 69.9 ± 1.2 | 76.1 ± 0.9 | 73.4 ± 1.1 | 77.5 ± 1.0 |
+| E6 | BiLSTM + attention, Word2Vec (frozen) | 3 | 89.7 ± 1.4 | 85.9 ± 1.8 | 84.5 ± 1.6 | 86.3 ± 1.8 |
+| E7 | BiLSTM + attention, Word2Vec (fine-tuned) | 3 | 90.6 ± 0.6 | 87.4 ± 1.7 | 85.5 ± 2.1 | 87.6 ± 1.5 |
+| E8 | BiGRU + attention, Word2Vec (fine-tuned) | 3 | 90.9 ± 1.4 | 87.4 ± 2.2 | 85.1 ± 2.6 | 87.6 ± 2.2 |
+| E9 | XLM-R-base (no Luganda in pretraining) | 3 | 42.8 ± 23.8 | 59.0 ± 13.7 | 40.4 ± 25.0 | 51.8 ± 20.4 |
+| E10 | XLM-R-base, stabilised (lr 1e-5, 15 epochs) | 3 | 54.3 ± 7.8 | 67.7 ± 4.7 | 54.9 ± 8.7 | 65.7 ± 5.9 |
+| E11 | AfriBERTa-base (no Luganda) | 3 | 87.6 ± 0.4 | 82.4 ± 0.6 | 77.7 ± 0.8 | 82.1 ± 0.6 |
+| E12 | AfroXLMR-base (no Luganda) | 3 | 83.8 ± 1.7 | 90.9 ± 0.4 | 89.2 ± 0.6 | 90.8 ± 0.4 |
+| E13 | Serengeti (Luganda in pretraining) | 3 | 89.1 ± 2.6 | 86.4 ± 0.8 | 84.4 ± 0.2 | 86.2 ± 0.6 |
+| E14 | AfroXLMR-base + our Luganda LAFT | 3 | 87.6 ± 0.7 | 90.1 ± 0.6 | 88.2 ± 0.5 | 90.1 ± 0.5 |
+| E15 | AfroXLMR-base + Kirundi/Swahili train data | 3 | 91.6 ± 1.4 | 88.2 ± 1.4 | 85.9 ± 2.4 | 88.0 ± 1.5 |
+| E16 | AfroXLMR-base, LoRA r=16 (PEFT) | 3 | 85.9 ± 0.9 | 88.0 ± 0.2 | 86.2 ± 0.3 | 87.8 ± 0.3 |
+| E17 | AfroXLMR-base, headline only | 3 | 60.3 ± 2.5 | 72.3 ± 0.9 | 65.8 ± 1.5 | 70.7 ± 1.5 |
+
+![All experiments](results/figures/experiments_f1.png)
 
 Figures are in [`results/figures/`](results/figures). Full per-class reports and confusion matrices for every run are in [`results/runs/`](results/runs).
 
-<!-- RESULTS_DISCUSSION -->
+### Key findings
+
+1. **Classical baselines are strong.** The word+character TF-IDF SVM reaches 88.5 macro-F1. Character n-grams help because Luganda is agglutinative: inflected forms of the same stem share sub-word features.
+2. **Pretrained Luganda embeddings matter for RNNs.** Word2Vec trained on our filtered Luganda corpus lifts the BiLSTM from 73.4 to 85.5 and cuts test OOV from 16.3% to 6.6%.
+3. **African-centric adaptation is decisive (RQ1).** AfroXLMR-base is the best model (89.2 ± 0.6 macro-F1, 90.9% accuracy) even though it never saw Luganda. XLM-R-base has the same architecture but is unstable on Luganda (40–55). AfriBERTa (77.7) suffers from heavy truncation: 2.8 subwords per word means 97% of articles exceed 256 tokens.
+4. **Seeing Luganda in pretraining is not enough by itself (RQ2).** Serengeti, which includes Luganda, reaches 84.4. Our own LAFT halves Luganda masked-LM perplexity (15.8 → 8.3) and stabilises fine-tuning (dev 87.6 vs. 83.8), but test macro-F1 stays at 88.2: better language modelling did not translate into better topic classification.
+5. **Pooling related-language data hurt (RQ3)** (85.9): 76% of the training data became non-Luganda.
+6. **LoRA (RQ4)** reaches 86.2 while training 0.42% of the parameters.
+7. **Headlines alone are insufficient** (65.8): most topic evidence is in the article body.
+
+### Error analysis (deployed AfroXLMR-base model, 24 errors / 223)
+
+Most errors fall into a few groups: genuinely multi-topic articles (e.g. *"Uganda Airlines suspends flights because of Coronavirus"*, labelled business and predicted health); probable label noise; names and Buganda-kingdom vocabulary shared across topics (the name of Buganda's sports minister, *Ssekabembe*, pulls articles towards sports); and event words such as *hospital* in religion stories. Accuracy falls for long (truncated) articles and for articles with many unseen words, and the model is strongly over-confident (0.93 mean confidence on its errors). Details: `results/error_analysis.json`, `results/misclassified_*.csv` and Section 6 of the report.
+
+| Confusion matrix (AfroXLMR-base) | Per-class F1 vs. baseline |
+|---|---|
+| ![](results/figures/confusion_final_afroxlmr_base_s123.png) | ![](results/figures/per_class_f1.png) |
+
 
 ## 5. Repository layout
 
@@ -65,9 +105,11 @@ Figures are in [`results/figures/`](results/figures). Full per-class reports and
 │   ├── transformer_ft.py    # fine-tuning loop (full FT, LoRA, cross-lingual data, headline ablation)
 │   ├── laft.py              # language-adaptive MLM fine-tuning on Luganda
 │   ├── aggregate_results.py # experiment table + figure
-│   └── error_analysis.py    # confusion matrices, error buckets, misclassified examples
-├── app/app.py               # Gradio web app (Hugging Face Space)
-├── scripts/download_models.sh
+│   ├── error_analysis.py    # confusion matrices, error buckets, misclassified examples
+│   └── export_onnx.py       # ONNX export + int8 quantisation + accuracy check of the deployed model
+├── space/index.html         # deployed web app: runs the 8-bit ONNX model in the browser (Transformers.js)
+├── app/app.py               # Gradio version for local use (full model, word-level explanations, baseline)
+├── scripts/               # download_models.sh, publish_hf.py
 ├── run_experiments.sh       # reproduces everything end-to-end
 ├── data/raw/                # MasakhaNEWS lug/run/swa TSVs (official splits)
 ├── results/                 # eda.json, runs/*.json, experiments.md/csv, figures/, error analysis
@@ -84,16 +126,33 @@ pip install -r requirements.txt
 mkdir -p data/unlabeled
 curl -L https://data.statmt.org/cc-100/lg.txt.xz | xz -d > data/unlabeled/cc100_lg.txt
 curl -L -o data/unlabeled/wiki_lg.parquet https://huggingface.co/datasets/wikimedia/wikipedia/resolve/main/20231101.lg/train-00000-of-00001.parquet
-bash run_experiments.sh          # ~6-8 h on an Apple M-series laptop (MPS); faster on a CUDA GPU
+bash run_experiments.sh          # ~8-10 h on an Apple M-series laptop (MPS); faster on a CUDA GPU
 ```
 
 Individual stages can be run on their own, for example `python src/baselines.py` (about 1 minute) or `python src/transformer_ft.py --model Davlan/afro-xlmr-base --name afroxlmr_base --seeds 42`.
 
-### Running the web app locally
+### Deployment
+
+The live demo is a **static Hugging Face Space** that runs the model **in the visitor's browser**: free Hugging Face hosting no longer supports server-side Gradio apps. The pipeline:
 
 ```bash
-python src/transformer_ft.py --model models/afroxlmr_base_laft_lug --name final --seeds 42 --save best
-python app/app.py                # http://127.0.0.1:7860
+python src/transformer_ft.py --model models/pretrained/Davlan__afro-xlmr-base --name final_afroxlmr_base --seeds 123 --save best
+python src/export_onnx.py        # -> models/best/onnx/model_quantized.onnx (1,112 MB -> 279 MB, same test accuracy)
+python scripts/publish_hf.py     # uploads the model + space/index.html
+```
+
+| Deployed model (test set) | Size | Accuracy | Macro-F1 | Agreement with PyTorch |
+|---|---|---|---|---|
+| PyTorch fp32 | 1,112 MB | 89.2 | 87.3 | — |
+| ONNX int8 (in browser) | 279 MB | 89.2 | 87.4 | 96.9% |
+
+The browser app applies the same text normalisation as training, shows topic probabilities, highlights which sentences drove the prediction (occlusion), and warns when confidence is below 60%.
+
+**Local Gradio version** (full-precision model, word-level explanations, TF-IDF baseline side by side):
+
+```bash
+pip install gradio
+python app/app.py                # http://127.0.0.1:7860  (loads models/best, or the Hub model if absent)
 ```
 
 ## 7. Existing resources vs. own work

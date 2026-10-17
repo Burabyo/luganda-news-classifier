@@ -1,0 +1,137 @@
+{
+  "model": "xlmr_base",
+  "family": "transformer",
+  "seed": 123,
+  "pretrained": "../models/pretrained/FacebookAI__xlm-roberta-base",
+  "config": {
+    "model": "../models/pretrained/FacebookAI__xlm-roberta-base",
+    "name": "xlmr_base",
+    "field": "headline+text",
+    "aux": "",
+    "lora": false,
+    "lora_r": 16,
+    "max_len": 256,
+    "bs": 16,
+    "lr": 3e-05,
+    "epochs": 8,
+    "patience": 3
+  },
+  "train_size": 771,
+  "trainable_params": 278047493,
+  "total_params": 278047493,
+  "subword_fertility": 2.7515551472987987,
+  "test_truncated_share": 0.968609865470852,
+  "dev_macro_f1": 0.125,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.5081515430476415,
+      "dev_macro_f1": 0.125
+    },
+    {
+      "epoch": 2,
+      "train_loss": 1.4587867852160283,
+      "dev_macro_f1": 0.125
+    },
+    {
+      "epoch": 3,
+      "train_loss": 1.43931030345798,
+      "dev_macro_f1": 0.125
+    },
+    {
+      "epoch": 4,
+      "train_loss": 1.4393582469294508,
+      "dev_macro_f1": 0.125
+    }
+  ],
+  "test": {
+    "accuracy": 0.4484304932735426,
+    "macro_precision": 0.08968609865470853,
+    "macro_recall": 0.2,
+    "macro_f1": 0.12383900928792571,
+    "weighted_f1": 0.27766594010745677
+  },
+  "per_class": {
+    "business": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 34.0
+    },
+    "health": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 46.0
+    },
+    "politics": {
+      "precision": 0.4484304932735426,
+      "recall": 1.0,
+      "f1-score": 0.6191950464396285,
+      "support": 100.0
+    },
+    "religion": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 19.0
+    },
+    "sports": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 24.0
+    },
+    "accuracy": 0.4484304932735426,
+    "macro avg": {
+      "precision": 0.08968609865470853,
+      "recall": 0.2,
+      "f1-score": 0.12383900928792571,
+      "support": 223.0
+    },
+    "weighted avg": {
+      "precision": 0.20108990729755277,
+      "recall": 0.4484304932735426,
+      "f1-score": 0.27766594010745677,
+      "support": 223.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      0,
+      0,
+      34,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      46,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      100,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      19,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      24,
+      0,
+      0
+    ]
+  ],
+  "train_seconds": 283.73421907424927
+}

@@ -23,8 +23,9 @@ import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 HERE = Path(__file__).resolve().parent
-MODEL_ID = os.environ.get("MODEL_ID", str(HERE / "model") if (HERE / "model").exists()
-                          else str(HERE.parent / "models" / "best"))
+HUB_MODEL = "Burabyo/luganda-news-afroxlmr"   # fine-tuned weights published on the Hugging Face Hub
+_local = [p for p in (HERE / "model", HERE.parent / "models" / "best") if (p / "config.json").exists()]
+MODEL_ID = os.environ.get("MODEL_ID", str(_local[0]) if _local else HUB_MODEL)
 BASELINE_PATH = HERE / "tfidf_char_lr.joblib"
 if not BASELINE_PATH.exists():
     BASELINE_PATH = HERE.parent / "models" / "tfidf_char_lr.joblib"

@@ -1,0 +1,148 @@
+{
+  "model": "serengeti",
+  "family": "transformer",
+  "seed": 13,
+  "pretrained": "../models/pretrained/UBC-NLP__serengeti",
+  "config": {
+    "model": "../models/pretrained/UBC-NLP__serengeti",
+    "name": "serengeti",
+    "field": "headline+text",
+    "aux": "",
+    "lora": false,
+    "lora_r": 16,
+    "max_len": 256,
+    "bs": 16,
+    "lr": 5e-05,
+    "epochs": 8,
+    "patience": 3,
+    "grad_ckpt": false
+  },
+  "train_size": 771,
+  "trainable_params": 278049029,
+  "total_params": 278049029,
+  "subword_fertility": 1.891585078846607,
+  "test_truncated_share": 0.9237668161434978,
+  "dev_macro_f1": 0.9250845494445151,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.3497216836023886,
+      "dev_macro_f1": 0.5898180856943743
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.5357474598903137,
+      "dev_macro_f1": 0.856114643976713
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.35330339913992104,
+      "dev_macro_f1": 0.9250845494445151
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.24015393322901427,
+      "dev_macro_f1": 0.824299703957928
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.1685850330822933,
+      "dev_macro_f1": 0.8571410789857392
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.07685787573966515,
+      "dev_macro_f1": 0.8759612936083524
+    }
+  ],
+  "test": {
+    "accuracy": 0.8565022421524664,
+    "macro_precision": 0.8760236060236061,
+    "macro_recall": 0.8239089155112846,
+    "macro_f1": 0.8447894838159667,
+    "weighted_f1": 0.8557195759894409
+  },
+  "per_class": {
+    "business": {
+      "precision": 0.8214285714285714,
+      "recall": 0.6764705882352942,
+      "f1-score": 0.7419354838709677,
+      "support": 34.0
+    },
+    "health": {
+      "precision": 0.7407407407407407,
+      "recall": 0.8695652173913043,
+      "f1-score": 0.8,
+      "support": 46.0
+    },
+    "politics": {
+      "precision": 0.8846153846153846,
+      "recall": 0.92,
+      "f1-score": 0.9019607843137255,
+      "support": 100.0
+    },
+    "religion": {
+      "precision": 0.9333333333333333,
+      "recall": 0.7368421052631579,
+      "f1-score": 0.8235294117647058,
+      "support": 19.0
+    },
+    "sports": {
+      "precision": 1.0,
+      "recall": 0.9166666666666666,
+      "f1-score": 0.9565217391304348,
+      "support": 24.0
+    },
+    "accuracy": 0.8565022421524664,
+    "macro avg": {
+      "precision": 0.8760236060236061,
+      "recall": 0.8239089155112846,
+      "f1-score": 0.8447894838159667,
+      "support": 223.0
+    },
+    "weighted avg": {
+      "precision": 0.861872274876759,
+      "recall": 0.8565022421524664,
+      "f1-score": 0.8557195759894409,
+      "support": 223.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      23,
+      5,
+      6,
+      0,
+      0
+    ],
+    [
+      1,
+      40,
+      4,
+      1,
+      0
+    ],
+    [
+      4,
+      4,
+      92,
+      0,
+      0
+    ],
+    [
+      0,
+      3,
+      2,
+      14,
+      0
+    ],
+    [
+      0,
+      2,
+      0,
+      0,
+      22
+    ]
+  ],
+  "train_seconds": 399.380273103714
+}

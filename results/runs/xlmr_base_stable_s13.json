@@ -1,0 +1,193 @@
+{
+  "model": "xlmr_base_stable",
+  "family": "transformer",
+  "seed": 13,
+  "pretrained": "../models/pretrained/FacebookAI__xlm-roberta-base",
+  "config": {
+    "model": "../models/pretrained/FacebookAI__xlm-roberta-base",
+    "name": "xlmr_base_stable",
+    "field": "headline+text",
+    "aux": "",
+    "lora": false,
+    "lora_r": 16,
+    "max_len": 256,
+    "bs": 16,
+    "lr": 1e-05,
+    "epochs": 15,
+    "patience": 5,
+    "grad_ckpt": false
+  },
+  "train_size": 771,
+  "trainable_params": 278047493,
+  "total_params": 278047493,
+  "subword_fertility": 2.7515551472987987,
+  "test_truncated_share": 0.968609865470852,
+  "dev_macro_f1": 0.4818896751217655,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.5257484223282909,
+      "dev_macro_f1": 0.125
+    },
+    {
+      "epoch": 2,
+      "train_loss": 1.403528580869682,
+      "dev_macro_f1": 0.125
+    },
+    {
+      "epoch": 3,
+      "train_loss": 1.3450937686263356,
+      "dev_macro_f1": 0.125
+    },
+    {
+      "epoch": 4,
+      "train_loss": 1.2844070809979073,
+      "dev_macro_f1": 0.2327019899304723
+    },
+    {
+      "epoch": 5,
+      "train_loss": 1.18872744935032,
+      "dev_macro_f1": 0.23548149963244303
+    },
+    {
+      "epoch": 6,
+      "train_loss": 1.0850923239952859,
+      "dev_macro_f1": 0.3144086799276673
+    },
+    {
+      "epoch": 7,
+      "train_loss": 1.0458428844249048,
+      "dev_macro_f1": 0.23007786846796136
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.9724188272281998,
+      "dev_macro_f1": 0.31090738262676876
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.8704584142345398,
+      "dev_macro_f1": 0.3247389596704665
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.8149726010482135,
+      "dev_macro_f1": 0.3342287342287342
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.7302912169084166,
+      "dev_macro_f1": 0.4583344120819849
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.681432154005449,
+      "dev_macro_f1": 0.4426007326007325
+    },
+    {
+      "epoch": 13,
+      "train_loss": 0.6059958395559036,
+      "dev_macro_f1": 0.4620117039063688
+    },
+    {
+      "epoch": 14,
+      "train_loss": 0.5986698477803192,
+      "dev_macro_f1": 0.45081893360307845
+    },
+    {
+      "epoch": 15,
+      "train_loss": 0.5770332410487065,
+      "dev_macro_f1": 0.4818896751217655
+    }
+  ],
+  "test": {
+    "accuracy": 0.6636771300448431,
+    "macro_precision": 0.47281827281827277,
+    "macro_recall": 0.5056641091219097,
+    "macro_f1": 0.4876023667245592,
+    "weighted_f1": 0.6317630983852885
+  },
+  "per_class": {
+    "business": {
+      "precision": 0.2777777777777778,
+      "recall": 0.29411764705882354,
+      "f1-score": 0.2857142857142857,
+      "support": 34.0
+    },
+    "health": {
+      "precision": 0.6481481481481481,
+      "recall": 0.7608695652173914,
+      "f1-score": 0.7,
+      "support": 46.0
+    },
+    "politics": {
+      "precision": 0.8018018018018018,
+      "recall": 0.89,
+      "f1-score": 0.8436018957345972,
+      "support": 100.0
+    },
+    "religion": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 19.0
+    },
+    "sports": {
+      "precision": 0.6363636363636364,
+      "recall": 0.5833333333333334,
+      "f1-score": 0.6086956521739131,
+      "support": 24.0
+    },
+    "accuracy": 0.6636771300448431,
+    "macro avg": {
+      "precision": 0.47281827281827277,
+      "recall": 0.5056641091219097,
+      "f1-score": 0.4876023667245592,
+      "support": 223.0
+    },
+    "weighted avg": {
+      "precision": 0.6040904336868462,
+      "recall": 0.6636771300448431,
+      "f1-score": 0.6317630983852885,
+      "support": 223.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      10,
+      6,
+      17,
+      0,
+      1
+    ],
+    [
+      7,
+      35,
+      4,
+      0,
+      0
+    ],
+    [
+      8,
+      2,
+      89,
+      0,
+      1
+    ],
+    [
+      6,
+      6,
+      1,
+      0,
+      6
+    ],
+    [
+      5,
+      5,
+      0,
+      0,
+      14
+    ]
+  ],
+  "train_seconds": 1004.6811201572418
+}

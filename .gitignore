@@ -14,3 +14,8 @@ report/sections_static.md
 results/.dl_done
 docs/VIVA_PREP.md
 docs/VIDEO_SCRIPT.md
+results/transformers.log
+results/final.log
+report/draft.pdf
+results/onnx_export.log
+results/publish.log

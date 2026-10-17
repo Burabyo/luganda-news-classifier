@@ -1,0 +1,30 @@
+{
+  "pytorch_fp32": {
+    "accuracy": 0.8923766816143498,
+    "macro_precision": 0.8965892198468257,
+    "macro_recall": 0.8577344640373312,
+    "macro_f1": 0.873101923717701,
+    "weighted_f1": 0.8909855281061286,
+    "size_mb": 1112.214236
+  },
+  "onnx_fp32": {
+    "accuracy": 0.8923766816143498,
+    "macro_precision": 0.8965892198468257,
+    "macro_recall": 0.8577344640373312,
+    "macro_f1": 0.873101923717701,
+    "weighted_f1": 0.8909855281061286,
+    "size_mb": 1112.417333,
+    "agreement_with_pytorch": 1.0,
+    "cpu_ms_per_article": 39.85699089118718
+  },
+  "onnx_int8": {
+    "accuracy": 0.8923766816143498,
+    "macro_precision": 0.893181103210515,
+    "macro_recall": 0.8624301162112443,
+    "macro_f1": 0.8742280943038345,
+    "weighted_f1": 0.8919375138345156,
+    "size_mb": 278.831757,
+    "agreement_with_pytorch": 0.968609865470852,
+    "cpu_ms_per_article": 36.037973224314875
+  }
+}

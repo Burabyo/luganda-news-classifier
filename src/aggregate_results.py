@@ -22,15 +22,15 @@ EXPERIMENTS = [
     ("E6", "bilstm_w2v_frozen", "BiLSTM + attention, Word2Vec (frozen)"),
     ("E7", "bilstm_w2v_tuned", "BiLSTM + attention, Word2Vec (fine-tuned)"),
     ("E8", "bigru_w2v_tuned", "BiGRU + attention, Word2Vec (fine-tuned)"),
-    ("E9", "xlmr_base", "XLM-R-base, full FT (no Luganda in pretraining)"),
-    ("E10", "afriberta_base", "AfriBERTa-base, full FT (no Luganda)"),
-    ("E11", "afroxlmr_base", "AfroXLMR-base, full FT (no Luganda)"),
-    ("E12", "serengeti", "Serengeti, full FT (Luganda in pretraining)"),
-    ("E13", "afroxlmr_base_laft", "AfroXLMR-base + our Luganda LAFT, full FT"),
-    ("E14", "afroxlmr_base_aux", "AfroXLMR-base + Kirundi/Swahili training data"),
-    ("E15", "afroxlmr_base_lora", "AfroXLMR-base, LoRA r=16 (PEFT)"),
-    ("E16", "afroxlmr_base_headline", "AfroXLMR-base, headline only"),
-    ("E17", "afroxlmr_base_len512", "AfroXLMR-base, max length 512 (vs 256)"),
+    ("E9", "xlmr_base", "XLM-R-base (no Luganda in pretraining)"),
+    ("E10", "xlmr_base_stable", "XLM-R-base, stabilised (lr 1e-5, 15 epochs)"),
+    ("E11", "afriberta_base", "AfriBERTa-base (no Luganda)"),
+    ("E12", "afroxlmr_base", "AfroXLMR-base (no Luganda)"),
+    ("E13", "serengeti", "Serengeti (Luganda in pretraining)"),
+    ("E14", "afroxlmr_base_laft", "AfroXLMR-base + our Luganda LAFT"),
+    ("E15", "afroxlmr_base_aux", "AfroXLMR-base + Kirundi/Swahili train data"),
+    ("E16", "afroxlmr_base_lora", "AfroXLMR-base, LoRA r=16 (PEFT)"),
+    ("E17", "afroxlmr_base_headline", "AfroXLMR-base, headline only"),
 ]
 
 
@@ -71,16 +71,15 @@ def main():
     (RESULTS_DIR / "experiments.md").write_text("\n".join(lines) + "\n")
     print("\n".join(lines))
 
-    colors = {"E0": "#999999"}
-    fam = lambda i: "#8C8C8C" if i in ("E0",) else ("#4C72B0" if int(i[1:]) <= 4 else ("#DD8452" if int(i[1:]) <= 8 else "#55A868"))
+    fam = lambda i: "#8C8C8C" if i == "E0" else ("#4C72B0" if int(i[1:]) <= 4 else ("#DD8452" if int(i[1:]) <= 8 else "#55A868"))
     fig, ax = plt.subplots(figsize=(9, 6))
     d = df.iloc[::-1]
     ax.barh(d["id"] + "  " + d["description"], 100 * d["test_macro_f1"], xerr=100 * d["test_macro_f1_std"],
             color=[fam(i) for i in d["id"]], capsize=3)
     ax.set_xlabel("Test macro-F1 (%)  — mean ± std over seeds")
     ax.set_xlim(0, 100)
-    for y, v in enumerate(d["test_macro_f1"]):
-        ax.text(100 * v + 1.5, y, f"{100 * v:.1f}", va="center", fontsize=8)
+    for y, (v, sd) in enumerate(zip(d["test_macro_f1"], d["test_macro_f1_std"])):
+        ax.text(100 * (v + sd) + 1.5, y, f"{100 * v:.1f}", va="center", fontsize=8)
     ax.set_title("Luganda news topic classification: all experiments")
     plt.tight_layout()
     plt.savefig(RESULTS_DIR / "figures" / "experiments_f1.png", dpi=200)
