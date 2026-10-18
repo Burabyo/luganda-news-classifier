@@ -153,7 +153,10 @@ async function run() {
     : `<div class="note ok">Predicted topic: <b>${INFO[top]}</b> (${(100 * conf).toFixed(0)}% confidence, ${ms.toFixed(0)} ms).</div>`;
 
   if ($("explain").checked) {
-    const sents = text.match(/[^.!?]+[.!?]*/g).map(x => x.trim()).filter(Boolean).slice(0, 12);
+    // split into sentences, but not after honorifics/abbreviations common in Luganda news (Owek., Dr., Rev. ...)
+    const ABBR = /\b(Owek|Oweek|Dr|Rev|Bro|Fr|Hon|Mr|Mrs|Ms|Prof|St|Sr|Jr|Gen|Col|Maj|Capt|Lt|Sgt|No)\./g;
+    const sents = text.replace(ABBR, "$1\u2024").match(/[^.!?]+[.!?]*/g)
+      .map(x => x.replace(/\u2024/g, ".").trim()).filter(x => x.length > 1).slice(0, 12);
     if (sents.length < 2) {
       $("why").innerHTML = `<span class="muted">Only one sentence, so sentence importance needs at least two. Try a longer article.</span>`;
     } else {
