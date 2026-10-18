@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | 🌐 **Live demo** | https://huggingface.co/spaces/Burabyo/luganda-news-classifier |
-| 🎥 **Demo video** | _link to be added_ |
+| 🎥 **Demo video** |(https://www.awesomescreenshot.com/video/57557215?key=68113497df1526d8c7b71f877b8fbd2f)|
 | 📄 **Report (PDF)** | [`report/report.pdf`](report/report.pdf) |
 | 🤗 **Fine-tuned model** | https://huggingface.co/Burabyo/luganda-news-afroxlmr |
 
